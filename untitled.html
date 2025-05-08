@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Daily Stoic Quote</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 1em;
+      background: #fefefe;
+      color: #222;
+      max-width: 400px;
+      margin: auto;
+      border: 2px solid #ccc;
+      border-radius: 12px;
+    }
+    .quote {
+      font-size: 1.2em;
+      margin-bottom: 0.8em;
+    }
+    .author {
+      text-align: right;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="quote" id="quote">Loading quote...</div>
+  <div class="author" id="author"></div>
+
+  <script>
+    fetch("https://stoic-quotes.com/api/quote")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("quote").textContent = `"${data.text}"`;
+        document.getElementById("author").textContent = `– ${data.author}`;
+      })
+      .catch(err => {
+        document.getElementById("quote").textContent = "Failed to load quote.";
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
