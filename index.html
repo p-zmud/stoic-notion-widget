@@ -1,43 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Daily Stoic Quote</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stoic Quote</title>
   <style>
-    body {
-      font-family: sans-serif;
-      padding: 1em;
-      background: #fefefe;
-      color: #222;
-      max-width: 400px;
-      margin: auto;
-      border: 2px solid #ccc;
-      border-radius: 12px;
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: white;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
     }
-    .quote {
-      font-size: 1.2em;
-      margin-bottom: 0.8em;
-    }
-    .author {
-      text-align: right;
-      font-style: italic;
+    #quote {
+      font-size: 1.2rem;
+      max-width: 80%;
+      line-height: 1.5;
     }
   </style>
 </head>
 <body>
-  <div class="quote" id="quote">Loading quote...</div>
-  <div class="author" id="author"></div>
+  <div id="quote">Loading...</div>
 
   <script>
     fetch("https://stoic-quotes.com/api/quote")
       .then(res => res.json())
       .then(data => {
-        document.getElementById("quote").textContent = `"${data.text}"`;
-        document.getElementById("author").textContent = `– ${data.author}`;
+        document.getElementById("quote").textContent = `"${data.text}" — ${data.author}`;
       })
-      .catch(err => {
+      .catch(() => {
         document.getElementById("quote").textContent = "Failed to load quote.";
-        console.error(err);
       });
   </script>
 </body>
